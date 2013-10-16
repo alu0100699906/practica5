@@ -32,7 +32,30 @@ class Fraccion
         puts "DIVISION FRACCIONAL"
 	Fraccion.new(@num*object.denom,@denom*object.num)
     end
+    
+     #metodo que devuelve el minimo comun multiplo de los dos numeros pasados por parametro
+    def mcm(a,b)  
+        aux=gcd(a,b)
+        (a/aux)*b
+    end
 
+    #método que permite suma numeros racionales
+    #devuelve un nuevo racional que suma al objeto que invoca el que le pasan 
+    #como parámetro (object)
+    def +(object) 
+        puts "SUMA FRACCIONAL"
+        aux=mcm(@denom,object.denom) #guardamos el mcm de los denominadores
+        Fraccion.new((((aux*num)/denom)+(aux*object.num)/object.denom),aux)
+    end
+ 
+    #método que permite restar numeros racionales
+    #devuelve un nuevo racional que resta al objeto que invoca el que le pasan 
+    #como parámetro (object)
+    def -(object) 
+        puts "RESTA FRACCIONAL"
+        aux=mcm(@denom,object.denom) #guardamos el mcm de los denominadores
+        Fraccion.new((((aux*num)/denom)-(aux*object.num)/object.denom),aux)
+    end
     
 end
 
@@ -45,6 +68,13 @@ puts producto
 ############DIVISION
 division=fraccion1/fraccion2
 puts division
+############SUMA
+suma=fraccion1+fraccion2
+puts suma
+############RESTA
+resta=fraccion1-fraccion2
+puts resta
+
 
 
 
