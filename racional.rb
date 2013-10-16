@@ -59,6 +59,7 @@ class Fraccion
     
 end
 
+
 ############INSTANCIA DE OBJETOS
 fraccion1=Fraccion.new(4,2)
 fraccion2=Fraccion.new(8,6)
