@@ -24,6 +24,16 @@ class Fraccion
         puts "PRODUCTO FRACCIONAL"
         Fraccion.new(@num*object.num,@denom*object.denom)
     end 
+    
+    #método que permite dividir numeros racionales
+    #devuelve un nuevo racional que divide al objeto que invoca el que le pasan 
+    #como parámetro (object)
+    def /(object)
+        puts "DIVISION FRACCIONAL"
+	Fraccion.new(@num*object.denom,@denom*object.num)
+    end
+
+    
 end
 
 ############INSTANCIA DE OBJETOS
@@ -32,3 +42,9 @@ fraccion2=Fraccion.new(8,6)
 ############PRODUCTO
 producto=fraccion1*fraccion2
 puts producto
+############DIVISION
+division=fraccion1/fraccion2
+puts division
+
+
+
