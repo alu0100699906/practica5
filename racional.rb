@@ -20,8 +20,9 @@ class Fraccion
     #método que permite multiplicar numeros racionales
     #devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan 
     #como parámetro (object)
+   
     def producto(object)            
-        
+        #multiplica numerador con numerador y denominador con denominador
         resultado=Fraccion.new(@num*object.num,@denom*object.denom)
         simplificar(resultado)
     end 
@@ -30,13 +31,15 @@ class Fraccion
     #devuelve un nuevo racional que divide al objeto que invoca el que le pasan 
     #como parámetro (object)
     def division(object)
-        
+        #multiplica numerador con denominador y denominador con numerador
 	resultado=Fraccion.new(@num*object.denom,@denom*object.num)
         simplificar(resultado)
     end
     
      #metodo que devuelve el minimo comun multiplo de los dos numeros pasados por parametro
     def mcm(a,b)  
+        #mediante el metodo de Euclides, resolvemos el minimo comun multiplo mediante el 
+        #maximo comun divisor
         aux=gcd(a,b)
         (a/aux)*b
     end
@@ -45,8 +48,9 @@ class Fraccion
     #devuelve un nuevo racional que suma al objeto que invoca el que le pasan 
     #como parámetro (object)
     def suma(object) 
-        
-        aux=mcm(@denom,object.denom) #guardamos el mcm de los denominadores
+        #hallamos el mcm de los denominadores
+        aux=mcm(@denom,object.denom) 
+        #hallamos los correspondientes numeradores y sumamos las dos fracciones
         resultado=Fraccion.new((((aux*num)/denom)+(aux*object.num)/object.denom),aux)
         simplificar(resultado)
     end
@@ -55,11 +59,14 @@ class Fraccion
     #devuelve un nuevo racional que resta al objeto que invoca el que le pasan 
     #como parámetro (object)
     def resta(object) 
-        aux=mcm(@denom,object.denom) #guardamos el mcm de los denominadores
+        #hallamos el mcm de los denominadores
+        aux=mcm(@denom,object.denom) 
+         #hallamos los correspondientes numeradores y restamos las dos fracciones
         resultado=Fraccion.new((((aux*num)/denom)-(aux*object.num)/object.denom),aux)
         simplificar(resultado)
     end
     
+    #metodo que permite simplificar el resultado de los resultados fraccionales
     def simplificar(object)
         aux= gcd(object.num, object.denom)
         Fraccion.new(object.num/aux, object.denom/aux)
