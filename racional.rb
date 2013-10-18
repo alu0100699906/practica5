@@ -20,17 +20,19 @@ class Fraccion
     #método que permite multiplicar numeros racionales
     #devuelve un nuevo racional que multiplica al objeto que invoca el que le pasan 
     #como parámetro (object)
-    def *(object)            
-        puts "PRODUCTO FRACCIONAL"
-        Fraccion.new(@num*object.num,@denom*object.denom)
+    def producto(object)            
+        
+        resultado=Fraccion.new(@num*object.num,@denom*object.denom)
+        simplificar(resultado)
     end 
     
     #método que permite dividir numeros racionales
     #devuelve un nuevo racional que divide al objeto que invoca el que le pasan 
     #como parámetro (object)
-    def /(object)
-        puts "DIVISION FRACCIONAL"
-	Fraccion.new(@num*object.denom,@denom*object.num)
+    def division(object)
+        
+	resultado=Fraccion.new(@num*object.denom,@denom*object.num)
+        simplificar(resultado)
     end
     
      #metodo que devuelve el minimo comun multiplo de los dos numeros pasados por parametro
@@ -42,40 +44,25 @@ class Fraccion
     #método que permite suma numeros racionales
     #devuelve un nuevo racional que suma al objeto que invoca el que le pasan 
     #como parámetro (object)
-    def +(object) 
-        puts "SUMA FRACCIONAL"
+    def suma(object) 
+        
         aux=mcm(@denom,object.denom) #guardamos el mcm de los denominadores
-        Fraccion.new((((aux*num)/denom)+(aux*object.num)/object.denom),aux)
+        resultado=Fraccion.new((((aux*num)/denom)+(aux*object.num)/object.denom),aux)
+        simplificar(resultado)
     end
  
     #método que permite restar numeros racionales
     #devuelve un nuevo racional que resta al objeto que invoca el que le pasan 
     #como parámetro (object)
-    def -(object) 
-        puts "RESTA FRACCIONAL"
+    def resta(object) 
         aux=mcm(@denom,object.denom) #guardamos el mcm de los denominadores
-        Fraccion.new((((aux*num)/denom)-(aux*object.num)/object.denom),aux)
+        resultado=Fraccion.new((((aux*num)/denom)-(aux*object.num)/object.denom),aux)
+        simplificar(resultado)
     end
     
+    def simplificar(object)
+        aux= gcd(object.num, object.denom)
+        Fraccion.new(object.num/aux, object.denom/aux)
+    end
 end
-
-
-############INSTANCIA DE OBJETOS
-fraccion1=Fraccion.new(4,2)
-fraccion2=Fraccion.new(8,6)
-############PRODUCTO
-producto=fraccion1*fraccion2
-puts producto
-############DIVISION
-division=fraccion1/fraccion2
-puts division
-############SUMA
-suma=fraccion1+fraccion2
-puts suma
-############RESTA
-resta=fraccion1-fraccion2
-puts resta
-
-
-
 
